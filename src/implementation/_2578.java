@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class _2758 {
+public class _2578 {
 
     static int[][] bingo = new int[5][5]; // 빙고판 배열 선언
     static int count; // 빙고 수
