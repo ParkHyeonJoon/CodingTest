@@ -26,6 +26,7 @@ public class _14467 {
             if(arr[a] != -1 && arr[a] != b) cow_sum++;
             arr[a] = b;
         }
+
         System.out.println(cow_sum);
     }
 }
