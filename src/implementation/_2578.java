@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class _2578 {
-
     static int[][] bingo = new int[5][5]; // 빙고판 배열 선언
     static int count; // 빙고 수
     static int turn = 1; // 몇 번 불렀는지
