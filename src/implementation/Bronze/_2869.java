@@ -1,4 +1,4 @@
-package implementation;
+package implementation.Bronze;
 import java.util.Scanner;
 
 public class _2869 {
