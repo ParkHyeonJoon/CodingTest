@@ -20,7 +20,6 @@ public class _12week_1 {
                 value += ch - '0';
             }
         }
-
         Collections.sort(result);
         for(Character ch : result) {
             System.out.print(ch);
