@@ -8,11 +8,12 @@ public class _10week {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] numbers = new int[n];
 
-        for(int i=0; i<n; i++) {
-            numbers[i] = sc.nextInt();
+        String[] numbers2 = sc.nextLine().split(" ");
+        int[] numbers = new int[numbers2.length];
+
+        for(int i=0; i< numbers2.length; i++) {
+            numbers[i] = Integer.parseInt(numbers2[i]);
         }
 
         _10week solution = new _10week();
