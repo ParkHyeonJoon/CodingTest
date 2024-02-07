@@ -1,4 +1,4 @@
-package implementation.Bronze;
+package Baekjoon.Bronze;
 import java.util.Scanner;
 
 public class _2869 {
