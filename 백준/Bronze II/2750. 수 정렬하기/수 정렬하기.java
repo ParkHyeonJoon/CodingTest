@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -6,10 +6,12 @@ public class Main {
         int N = sc.nextInt();
         int[] arr = new int[N];
 
-        for(int i=0; i<N; i++) {
+        for (int i = 0; i < N; i++) {
             arr[i] = sc.nextInt();
         }
 
+        Arrays.sort(arr);
+        /*
         for(int i=0; i<arr.length; i++) {
             int minIndex = 0;
             for(int j = minIndex+1; j<arr.length; j++) {
@@ -20,7 +22,7 @@ public class Main {
                 }
                 minIndex++;
             }
-        }
+        } */
 
         for(int i=0; i<arr.length; i++) {
             System.out.println(arr[i]);
