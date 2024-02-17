@@ -11,7 +11,7 @@ public class Main {
         }
 
         Arrays.sort(arr);
-        /*
+        /* 버블 정렬로 풀음
         for(int i=0; i<arr.length; i++) {
             int minIndex = 0;
             for(int j = minIndex+1; j<arr.length; j++) {
