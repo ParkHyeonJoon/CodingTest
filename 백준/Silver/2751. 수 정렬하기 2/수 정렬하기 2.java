@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        // 1. Scanner + Collections 사용
         Scanner sc = new Scanner(System.in);
         StringBuilder sb = new StringBuilder();
         int N = sc.nextInt();
