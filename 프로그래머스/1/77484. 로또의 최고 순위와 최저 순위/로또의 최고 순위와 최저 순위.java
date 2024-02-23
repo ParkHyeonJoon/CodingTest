@@ -18,21 +18,13 @@ class Solution {
                 zeroCount++;
             }
         }
-        int original = 0;
-        if(winCount == 0) {
-            original = 6;
-        } else {
-            original = 7 - winCount;
-        }
         
-        int imagine = 0;
-        if(zeroCount == 0 && winCount == 0) {
-            imagine = 6;
-        } else {
-            imagine = 7 - (winCount + zeroCount); 
-        }
+        int maxRank = 7 - (winCount + zeroCount);
+        int minRank = 7 - winCount;
+        if(maxRank > 6) maxRank = 6;
+        if(minRank > 6) minRank = 6;
         
-        int[] answer = {imagine, original};
+        int[] answer = {maxRank, minRank};
         return answer;
     }
 }
