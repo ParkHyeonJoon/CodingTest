@@ -17,11 +17,11 @@ class Solution {
         
         while(queue1Sum != queue2Sum) {
             int firstNumber = 0;
-            if(count > (queue1.length+queue2.length)*2) return -1;
+            if(count > (queue1.length+queue2.length) + 1) return -1;
             if(queue1Sum > queue2Sum) {
                 firstNumber = q1.poll();
                 
-                if(q1.isEmpty()) return -1;
+                
                 
                 q2.add(firstNumber);
                 count++;
@@ -30,7 +30,7 @@ class Solution {
             } else if(queue2Sum > queue1Sum) {
                 firstNumber = q2.poll();
                 
-                if(q2.isEmpty()) return -1;
+                
                 
                 q1.add(firstNumber);
                 count++;
