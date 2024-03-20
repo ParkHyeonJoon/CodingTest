@@ -36,13 +36,11 @@ class Solution {
         for(int i=0; i<survey.length; i++) {
             if(choices[i] > 4) {
                 point = choices[i] - 4;
-                index = map.get(survey[i].substring(1, 2));
-                map.put(survey[i].substring(1, 2), index+point);
+                map.put(survey[i].substring(1, 2), map.getOrDefault(survey[i].substring(1,2), 0)+point);
             }
             if(choices[i] < 4) {
                 point = 4 - choices[i];
-                index = map.get(survey[i].substring(0, 1));
-                map.put(survey[i].substring(0, 1), index+point);
+                map.put(survey[i].substring(0, 1), map.getOrDefault(survey[i].substring(0,1), 0)+point);
             }
         }
     }
