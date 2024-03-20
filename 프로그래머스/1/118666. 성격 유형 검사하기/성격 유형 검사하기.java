@@ -1,17 +1,38 @@
 import java.util.*;
 
 class Solution {
+    HashMap<String, Integer> map;
     public String solution(String[] survey, int[] choices) {
-        HashMap<String, Integer> map = new HashMap<String, Integer>();
-        HashMap<Integer, String> reverseMap = new HashMap<Integer,String>();
-
-        map.put("R", 0); map.put("T", 0); map.put("C", 0); map.put("F", 0);
-        map.put("J", 0); map.put("M", 0); map.put("A", 0); map.put("N", 0);
-        
         String[][] s = {{"R", "T"}, {"C", "F"}, {"J", "M"}, {"A", "N"}};
         
+        initScore(s, survey, choices);
+        
+        String result = returnChoices(map, s);
+        
+        return result;
+    }
+    
+    private String returnChoices(HashMap<String, Integer> map, String[][] s) {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<4; i++) {
+            if(map.get(s[i][0]) >= map.get(s[i][1])) {
+                sb.append((s[i][0]));
+            } else {
+                sb.append((s[i][1]));
+            }
+        }
+        return sb.toString();
+    }
+    
+    private void initScore(String[][] s, String[] survey, int[] choices) {
+        map = new HashMap<String, Integer>();
+        for(int n=0; n<s.length; n++) {
+            for(int m=0; m<s[0].length; m++) {
+                map.put(s[n][m], 0);
+            }
+        }
         int index = 0; int point = 0;
-        int[] score = new int[8];
+        
         for(int i=0; i<survey.length; i++) {
             if(choices[i] > 4) {
                 point = choices[i] - 4;
@@ -24,17 +45,5 @@ class Solution {
                 map.put(survey[i].substring(0, 1), index+point);
             }
         }
-        
-        StringBuilder sb = new StringBuilder();
-        
-        for(int i=0; i<4; i++) {
-            if(map.get(s[i][0]) >= map.get(s[i][1])) {
-                sb.append((s[i][0]));
-            } else {
-                sb.append((s[i][1]));
-            }
-        }
-
-        return sb.toString();
     }
 }
