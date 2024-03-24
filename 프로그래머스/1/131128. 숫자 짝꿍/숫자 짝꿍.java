@@ -21,6 +21,17 @@ class Solution {
                 yArr[i]--;
             }
         }
+        
+        int count = 0;
+        for(int i=0; i<=9; i++) {
+            while(xArr[i] > 0 && yArr[i] > 0) {
+                count++;
+                xArr[i]--;
+                yArr[i]--;
+            }
+        }
+        String[] result = new String[count];
+        
         String answer = "";
         
         if(sb.toString().equals("")) answer = "-1";
