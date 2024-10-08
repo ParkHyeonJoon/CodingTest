@@ -1,4 +1,4 @@
-package 지뢰찾기2;
+package final_test.지뢰찾기2;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
