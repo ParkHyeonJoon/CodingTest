@@ -1,10 +1,8 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     static int N, M, V;
-    static int[][] adj;
+    static ArrayList<Integer>[] adj;
     static boolean[] visit;
     static StringBuilder sb = new StringBuilder();
 
@@ -13,11 +11,17 @@ public class Main {
         N = sc.nextInt();
         M = sc.nextInt();
         V = sc.nextInt();
-        adj = new int[N + 1][N + 1];
+        adj = new ArrayList[N + 1];
+        for(int i=1; i<=N; i++) {
+            adj[i] = new ArrayList<Integer>();
+        }
         for(int i=1; i<=M; i++) {
             int x = sc.nextInt(), y = sc.nextInt();
-            adj[x][y] = 1;
-            adj[y][x] = 1;
+            adj[x].add(y);
+            adj[y].add(x);
+        }
+        for(int i=1; i<=N; i++) {
+            Collections.sort(adj[i]);
         }
     }
 
@@ -25,8 +29,7 @@ public class Main {
         visit[x] = true;
         sb.append(x).append(' ');
 
-        for(int y=1; y<=N; y++) {
-            if(adj[x][y] == 0) continue;
+        for(int y : adj[x]) {
             if(visit[y]) continue;
             dfs(y);
         }
@@ -41,15 +44,13 @@ public class Main {
         while(!que.isEmpty()) {
             int x = que.poll();
             sb.append(x).append(' ');
-            for(int y=1; y<=N; y++) {
-                if(adj[x][y] == 0) continue;
+           for(int y : adj[x]) {
                 if(visit[y]) continue;
 
                 que.add(y);
                 visit[y] = true;
             }
         }
-
     }
 
     static void pro() {
