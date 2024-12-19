@@ -1,23 +1,51 @@
 import java.util.*;
 public class Main {
+
     static int N;
-    static String[] personInfo;
-    static List<Integer> list;
+    static HashSet<String> set = new HashSet<>();
+    static String[] arr;
 
     static void input() {
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
+        sc.nextLine();
         for(int i=0; i<N; i++) {
-            personInfo[i] = sc.nextLine();
+            set.add(sc.nextLine());
         }
     }
 
     static void pro() {
-        for(int i=0; i<N; i++) {
-            list.add(Integer.parseInt(Arrays.toString(personInfo[i].split(" "))));
+        arr = new String[set.size()];
+        arr = set.toArray(new String[0]);
+        Arrays.sort(arr, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                if(o1.length() < o2.length()) {
+                    return -1;
+                } else if(o1.length() == o2.length()) {
+                    for(int i=0; i<o1.length(); i++) {
+                        if(o1.charAt(i) == o2.charAt(i)) continue;
+                        else return o1.charAt(i) - o2.charAt(i);
+                    }
+                } else return 1;
+                return 0;
+            }
+        });
+
+        /**
+         * 람다 표현식으로
+         *
+         * Arrays.sort(arr, (o1, o2) -> {
+         *             if (o1.length() != o2.length()) {
+         *                 return o1.length() - o2.length();
+         *             }
+         *             return o1.compareTo(o2); // 사전 순 정렬
+         *         });
+         */
+
+        for(int i=0; i<arr.length; i++) {
+            System.out.println(arr[i]);
         }
-
-
     }
     public static void main(String[] args) {
         input();
