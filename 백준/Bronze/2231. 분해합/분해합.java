@@ -12,10 +12,10 @@ public class Main {
     static void pro() {
         for(int i=1; i<N; i++) {
             int sum = i;
-            String num = String.valueOf(i);
-            int length = num.length();
-            for(int j=0; j<length; j++) {
-                sum += num.charAt(j) - '0';
+            int num = i;
+            while(num > 0) {
+                sum += num % 10;
+                num /= 10;
             }
 
             if(sum == N) {
