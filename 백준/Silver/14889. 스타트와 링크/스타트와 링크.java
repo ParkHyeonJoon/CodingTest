@@ -35,21 +35,34 @@ public class Main {
     }
 
     static void divideTeam() {
-        int startSum = 0, linkSum = 0;
+        List<Integer> startTeam = new ArrayList<>();
+        List<Integer> linkTeam = new ArrayList<>();
 
-        for (int i = 0; i < N; i++) {
-            for (int j = i + 1; j < N; j++) {
-                if (visited[i] && visited[j]) {
-                    startSum += board[i][j] + board[j][i];
-                } else if (!visited[i] && !visited[j]) {
-                    linkSum += board[i][j] + board[j][i];
-                }
+        for(int i=0; i<N; i++) {
+            if(visited[i]) {
+                startTeam.add(i);
+            } else {
+                linkTeam.add(i);
             }
         }
 
-        min = Math.min(min, Math.abs(startSum - linkSum));
+        int startSum = calculate(startTeam);
+        int linkSum = calculate(linkTeam);
+
+        min = Math.min(min, Math.abs(startSum-linkSum));
     }
-    
+
+    static int calculate(List<Integer> team) {
+        int sum = 0;
+        for(int i : team) {
+            for(int j : team) {
+                if(i != j) {
+                    sum += board[i][j];
+                }
+            }
+        }
+        return sum;
+    }
     public static void main(String[] args) throws IOException {
         input();
         pro(0, 0);
