@@ -1,69 +1,72 @@
+import java.io.*;
 import java.util.*;
 
 public class Main {
     static int N, M, V;
-    static ArrayList<Integer>[] adj;
-    static boolean[] visit;
-    static StringBuilder sb = new StringBuilder();
+    static List<Integer>[] arr;
+    static boolean[] visited;
 
-    static void input() {
-        Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        M = sc.nextInt();
-        V = sc.nextInt();
-        adj = new ArrayList[N + 1];
+    static void input() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        V = Integer.parseInt(st.nextToken());
+        arr = new ArrayList[N+1];
         for(int i=1; i<=N; i++) {
-            adj[i] = new ArrayList<Integer>();
+            arr[i] = new ArrayList<>();
         }
-        for(int i=1; i<=M; i++) {
-            int x = sc.nextInt(), y = sc.nextInt();
-            adj[x].add(y);
-            adj[y].add(x);
+
+        for(int i=0; i<M; i++) {
+            st = new StringTokenizer(br.readLine());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
+            arr[start].add(end);
+            arr[end].add(start);
         }
+
         for(int i=1; i<=N; i++) {
-            Collections.sort(adj[i]);
+            Collections.sort(arr[i]);
         }
     }
 
-    static void dfs(int x) {
-        visit[x] = true;
-        sb.append(x).append(' ');
+    static void dfs(int start) {
+        System.out.print(start + " ");
+        visited[start] = true;
 
-        for(int y : adj[x]) {
-            if(visit[y]) continue;
-            dfs(y);
-        }
-    }
-
-    static void bfs(int start) {
-        Queue<Integer> que = new LinkedList<>();
-
-        que.add(start);
-        visit[start] = true;
-
-        while(!que.isEmpty()) {
-            int x = que.poll();
-            sb.append(x).append(' ');
-           for(int y : adj[x]) {
-                if(visit[y]) continue;
-
-                que.add(y);
-                visit[y] = true;
+        for(int i : arr[start]) {
+            if(!visited[i]) {
+                dfs(i);
             }
         }
     }
 
-    static void pro() {
-        visit = new boolean[N + 1];
-        dfs(V);
-        sb.append('\n');
-        for(int i=1; i<=N; i++) visit[i] = false;
-        bfs(V);
-        System.out.println(sb);
+    static void bfs(int start) {
+        Queue<Integer> queue = new LinkedList<Integer>();
+        queue.add(start);
+        visited[start] = true;
+
+        while(!queue.isEmpty()) {
+            int nowNode = queue.poll();
+            System.out.print(nowNode + " ");
+            for(int i : arr[nowNode]) {
+                if(!visited[i]) {
+                    visited[i] = true;
+                    queue.add(i);
+                }
+            }
+        }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         input();
-        pro();
+
+        visited = new boolean[N+1];
+        dfs(V);
+        System.out.println();
+
+        visited = new boolean[N+1];
+        bfs(V);
+        System.out.println();
     }
 }
